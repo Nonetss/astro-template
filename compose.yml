@@ -1,14 +1,4 @@
 services:
-  astro-template:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: astro-template
-    ports:
-      - '4321:80'
-    environment:
-      - BACKEND_URL=http://localhost:3000
-
   database:
     image: postgres:16
     container_name: database
