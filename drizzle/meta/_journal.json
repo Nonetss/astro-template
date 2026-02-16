@@ -8,6 +8,13 @@
       "when": 1771226412881,
       "tag": "0000_tiny_sentinel",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1771227811476,
+      "tag": "0001_complete_mandroid",
+      "breakpoints": true
     }
   ]
 }
