@@ -1,4 +1,4 @@
-import { authClient } from '@/lib/auth';
+import { authClient } from '@/lib/auth-client';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -54,8 +54,8 @@ export const LoginPage = () => {
 
   const handleSSOLogin = async () => {
     try {
-      await authClient.signIn.sso({
-        providerId: 'authentik',
+      await authClient.signIn.oauth2({
+        providerId: 'keycloak',
         callbackURL: '/',
       });
     } catch (error) {
@@ -70,47 +70,6 @@ export const LoginPage = () => {
           <CardTitle>Login</CardTitle>
         </CardHeader>
         <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input {...field} className="rounded-none" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input {...field} className="rounded-none" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full rounded-none">
-                Login
-              </Button>
-            </form>
-          </Form>
-          <Button
-            variant="outline"
-            className="mt-4 w-full rounded-none"
-            onClick={handleGoogleLogin}
-          >
-            <img src="/icons/google.svg" alt="Google" className="h-4 w-4" />
-            <p>Google</p>
-          </Button>
           <Button
             variant="outline"
             className="mt-4 w-full rounded-none"
