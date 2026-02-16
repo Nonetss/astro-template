@@ -14,5 +14,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
     context.locals.session = null;
   }
 
+  const isLoginPage = context.url.pathname === '/login';
+  if (!isAuthed && !isLoginPage) {
+    return Response.redirect(new URL('/login', context.url.origin));
+  }
+
   return next();
 });
