@@ -1,8 +1,14 @@
+import 'dotenv/config';
 import { betterAuth } from 'better-auth';
 import { Pool } from 'pg';
 import { genericOAuth } from 'better-auth/plugins/generic-oauth';
+import { jwt } from 'better-auth/plugins';
 
-const baseURL = process.env.PUBLIC_BETTER_AUTH_URL || '';
+const baseURL =
+  process.env.BETTER_AUTH_BASE_URL ||
+  process.env.BETTER_AUTH_URL ||
+  process.env.PUBLIC_BETTER_AUTH_URL ||
+  '';
 
 export const auth = betterAuth({
   baseURL,
@@ -28,6 +34,7 @@ export const auth = betterAuth({
     },
   },
   plugins: [
+    jwt(),
     genericOAuth({
       config: [
         {

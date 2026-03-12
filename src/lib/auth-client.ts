@@ -7,7 +7,7 @@ export interface userInfo extends User {
   username: string;
 }
 
-const baseURL = process.env.PUBLIC_BETTER_AUTH_URL || '';
+const baseURL = import.meta.env.PUBLIC_BETTER_AUTH_URL || '';
 
 export const authClient = createAuthClient({
   baseURL,
