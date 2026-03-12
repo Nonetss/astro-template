@@ -1,39 +1,10 @@
 ---
 import Main from '@/layouts/main.astro';
-import { Button } from '@/components/ui/button';
-import { ButtonLogOut } from '@/components/features/login/buttonLogOut';
-import { Prueba } from '@/components/features/prueba/Prueba';
+import { TemplateHomePage } from '@/components/features/template';
+
 const { user } = Astro.locals;
 ---
 
 <Main title="Hola Mundo">
-  <div
-    class="flex min-h-screen items-center justify-center bg-white font-sans text-black"
-  >
-    <div class="text-center">
-      <h1 class="text-6xl font-bold text-black">Hola {user?.name}</h1>
-      <p>Grupos: {user?.groups.join(', ')}</p>
-      <p class="mt-4 text-xl font-light text-slate-400">
-        Template para proyectos Astro. Con React, TailwindCSS y Shadcn UI.
-      </p>
-      <div class="mt-10 flex gap-4">
-        {
-          user ? (
-            <div class="flex w-full items-center justify-center">
-              <ButtonLogOut client:only="react" />
-            </div>
-          ) : (
-            <div class="flex w-full items-center justify-center">
-              <Button className="w-full rounded-none">
-                <a href="/login" class="w-full">
-                  Login
-                </a>
-              </Button>
-            </div>
-          )
-        }
-      </div>
-      <Prueba client:only="react" />
-    </div>
-  </div>
+  <TemplateHomePage client:load user={user} />
 </Main>
