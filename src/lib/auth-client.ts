@@ -1,5 +1,5 @@
 import { createAuthClient } from 'better-auth/react';
-import { genericOAuthClient } from 'better-auth/client/plugins';
+import { genericOAuthClient, jwtClient } from 'better-auth/client/plugins';
 import type { User } from 'better-auth';
 
 export interface userInfo extends User {
@@ -11,5 +11,5 @@ const baseURL = import.meta.env.PUBLIC_BETTER_AUTH_URL || '';
 
 export const authClient = createAuthClient({
   baseURL,
-  plugins: [genericOAuthClient()],
+  plugins: [genericOAuthClient(), jwtClient()],
 });
