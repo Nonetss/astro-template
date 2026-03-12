@@ -1,21 +1,13 @@
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { betterAuth } from 'better-auth';
-import db from '@/lib/db';
+import { Pool } from 'pg';
 import { genericOAuth } from 'better-auth/plugins/generic-oauth';
-import * as authSchema from '@/lib/models/auth-schema';
 
-const baseURL = import.meta.env.PUBLIC_BETTER_AUTH_URL || '';
+const baseURL = process.env.PUBLIC_BETTER_AUTH_URL || '';
 
 export const auth = betterAuth({
   baseURL,
-  database: drizzleAdapter(db, {
-    provider: 'pg',
-    schema: {
-      user: authSchema.user,
-      session: authSchema.session,
-      account: authSchema.account,
-      verification: authSchema.verification,
-    },
+  database: new Pool({
+    connectionString: process.env.DATABASE_URL,
   }),
   account: {
     accountLinking: {
