@@ -26,8 +26,8 @@ const currentPath = Astro.url.pathname;
       Template
     </a>
 
-    <!-- Links -->
-    <ul class="flex items-center gap-1">
+    <!-- Links — desktop -->
+    <ul class="hidden items-center gap-1 md:flex">
       {
         navLinks.map(({ href, label }) => {
           const isActive =
@@ -52,22 +52,145 @@ const currentPath = Astro.url.pathname;
     </ul>
 
     <!-- Actions -->
-    <div class="flex items-center gap-4">
-      {
-        user ? (
-          <NavUser client:only="react" name={user.name} email={user.email} />
-        ) : (
-          <a
-            href="/login"
-            class="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors"
-          >
-            Login
-          </a>
-        )
-      }
+    <div class="flex items-center gap-3">
+      <!-- User/Login — desktop -->
+      <div class="hidden md:block">
+        {
+          user ? (
+            <NavUser client:only="react" name={user.name} email={user.email} />
+          ) : (
+            <a
+              href="/login"
+              class="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors"
+            >
+              Login
+            </a>
+          )
+        }
+      </div>
+
+      <!-- Hamburger — mobile -->
+      <button
+        id="nav-toggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        class="border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground flex size-9 items-center justify-center border transition-colors md:hidden"
+      >
+        <svg
+          id="icon-open"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="4" y1="8" x2="20" y2="8"></line>
+          <line x1="4" y1="16" x2="20" y2="16"></line>
+        </svg>
+        <svg
+          id="icon-close"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="hidden"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </nav>
-  <div class="absolute top-1/2 right-6 -translate-y-1/2">
+  <div class="absolute top-1/2 right-6 hidden -translate-y-1/2 md:block">
     <ThemeToggle client:load />
   </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="nav-menu"
+    class="border-border bg-background hidden border-t md:hidden"
+  >
+    <ul class="flex flex-col px-6 py-3">
+      {
+        navLinks.map(({ href, label }) => {
+          const isActive =
+            href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  'block py-2.5 text-sm font-medium transition-colors',
+                  isActive
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <div class="border-border border-t px-6 py-4">
+      <div class="flex items-center justify-between">
+        {
+          user ? (
+            <div class="flex w-full items-center justify-between">
+              <div>
+                <p class="text-foreground text-sm font-medium">{user.name}</p>
+                <p class="text-muted-foreground text-xs">{user.email}</p>
+              </div>
+              <NavUser
+                client:only="react"
+                name={user.name}
+                email={user.email}
+              />
+            </div>
+          ) : (
+            <a
+              href="/login"
+              class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+            >
+              Login
+            </a>
+          )
+        }
+        <ThemeToggle client:load />
+      </div>
+    </div>
+  </div>
 </header>
+
+<script>
+  function initNav() {
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', isOpen);
+      iconOpen?.classList.toggle('hidden', !isOpen);
+      iconClose?.classList.toggle('hidden', isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+
+  initNav();
+  document.addEventListener('astro:after-swap', initNav);
+</script>
