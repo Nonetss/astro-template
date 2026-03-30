@@ -10,6 +10,17 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { AvatarWithFallback } from '@/components/ui/avatar-with-fallback';
 import { SelectDemo } from '@/components/ui/select-demo';
+import { AccordionDemo } from '@/components/ui/accordion-demo';
+import { TabsDemo } from '@/components/ui/tabs-demo';
+import { CalendarDemo } from '@/components/ui/calendar-demo';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from '@/components/ui/table';
 import {
   Card,
   CardHeader,
@@ -383,6 +394,92 @@ import {
             <span class="text-foreground text-sm">Perfil</span>
           </div>
         </div>
+      </section>
+
+      <!-- Tabs -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Tabs
+        </h2>
+        <TabsDemo />
+      </section>
+
+      <!-- Accordion -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Accordion
+        </h2>
+        <AccordionDemo />
+      </section>
+
+      <!-- Tabla -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Tabla
+        </h2>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Nombre</TableHead>
+              <TableHead>Rol</TableHead>
+              <TableHead>Curso</TableHead>
+              <TableHead class="text-right">Estado</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {
+              [
+                {
+                  name: 'Ana Gómez',
+                  role: 'Estudiante',
+                  course: 'Matemática II',
+                  status: 'Activa',
+                },
+                {
+                  name: 'Carlos Ruiz',
+                  role: 'Docente',
+                  course: 'Historia',
+                  status: 'Activo',
+                },
+                {
+                  name: 'Laura Perez',
+                  role: 'Estudiante',
+                  course: 'Biología',
+                  status: 'Inactiva',
+                },
+                {
+                  name: 'Martín López',
+                  role: 'Admin',
+                  course: '—',
+                  status: 'Activo',
+                },
+              ].map((row) => (
+                <TableRow>
+                  <TableCell className="font-medium">{row.name}</TableCell>
+                  <TableCell>{row.role}</TableCell>
+                  <TableCell>{row.course}</TableCell>
+                  <TableCell className="text-right">{row.status}</TableCell>
+                </TableRow>
+              ))
+            }
+          </TableBody>
+        </Table>
+      </section>
+
+      <!-- Calendario -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Calendario
+        </h2>
+        <CalendarDemo client:load />
       </section>
 
       <!-- Footer -->
