@@ -23,7 +23,9 @@ const { user } = Astro.locals;
           user ? (
             <div class="flex flex-col items-center justify-center gap-3">
               <Button className="w-full" variant="secondary">
-                <a href="/components">Components</a>
+                <a class="h-full" href="/components">
+                  Components
+                </a>
               </Button>
               <ButtonLogOut client:only="react" />
             </div>
