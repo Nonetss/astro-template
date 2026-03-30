@@ -1,5 +1,6 @@
 ---
 import Main from '@/layouts/main.astro';
+import PageHeader from '@/components/ui/page-header.astro';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,20 +17,11 @@ import {
 <Main title="Componentes">
   <div class="bg-background min-h-screen px-8 py-16">
     <div class="mx-auto max-w-4xl space-y-20">
-      <!-- Header -->
-      <div class="border-border border-b pb-8">
-        <p
-          class="text-muted-foreground text-xs font-medium tracking-widest uppercase"
-        >
-          Design System
-        </p>
-        <h1 class="font-display text-foreground mt-2 text-5xl font-bold">
-          Componentes
-        </h1>
-        <p class="text-muted-foreground mt-3 text-sm">
-          Vista previa del sistema de diseño. Solo para desarrollo.
-        </p>
-      </div>
+      <PageHeader
+        title="Componentes"
+        label="Design System"
+        description="Vista previa del sistema de diseño. Solo para desarrollo."
+      />
 
       <!-- Tipografía -->
       <section class="space-y-6">

@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  label?: string;
+  back?: boolean;
+}
+import { ArrowLeft } from 'lucide-react';
+
+const { title, description, label, back = true } = Astro.props;
+---
+
+<div class="border-border border-b pb-8">
+  {
+    back && (
+      <button
+        onclick="history.back()"
+        class="text-muted-foreground hover:text-foreground mb-6 flex items-center gap-1.5 text-xs transition-colors"
+      >
+        <ArrowLeft size={16} />
+        Atrás
+      </button>
+    )
+  }
+
+  {
+    label && (
+      <p class="text-muted-foreground text-xs font-medium tracking-widest uppercase">
+        {label}
+      </p>
+    )
+  }
+
+  <h1
+    class={`font-display font-bold text-foreground text-5xl leading-tight ${label ? 'mt-2' : ''}`}
+  >
+    {title}
+  </h1>
+
+  {
+    description && (
+      <p class="text-muted-foreground mt-3 text-sm">{description}</p>
+    )
+  }
+</div>
