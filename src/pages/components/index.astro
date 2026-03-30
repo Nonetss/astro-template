@@ -4,6 +4,12 @@ import PageHeader from '@/components/ui/page-header.astro';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { AvatarWithFallback } from '@/components/ui/avatar-with-fallback';
+import { SelectDemo } from '@/components/ui/select-demo';
 import {
   Card,
   CardHeader,
@@ -245,6 +251,136 @@ import {
           >
             <span class="text-destructive font-medium">Error</span> — Algo ha ido
             mal. Inténtalo de nuevo.
+          </div>
+        </div>
+      </section>
+
+      <!-- Select -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Select
+        </h2>
+        <SelectDemo />
+      </section>
+
+      <!-- Textarea -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Textarea
+        </h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="space-y-1.5">
+            <Label>Descripción</Label>
+            <Textarea
+              placeholder="Escribí una descripción…"
+              className="resize-none rounded-none"
+              rows={4}
+            />
+          </div>
+          <div class="space-y-1.5">
+            <Label>Deshabilitado</Label>
+            <Textarea
+              placeholder="No editable"
+              disabled
+              className="resize-none rounded-none"
+              rows={4}
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Checkbox -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Checkbox
+        </h2>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <Checkbox id="check1" defaultChecked />
+            <Label htmlFor="check1">Activo por defecto</Label>
+          </div>
+          <div class="flex items-center gap-2">
+            <Checkbox id="check2" />
+            <Label htmlFor="check2">Sin marcar</Label>
+          </div>
+          <div class="flex items-center gap-2">
+            <Checkbox id="check3" disabled />
+            <Label htmlFor="check3" className="text-muted-foreground"
+              >Deshabilitado</Label
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <Checkbox id="check4" disabled defaultChecked />
+            <Label htmlFor="check4" className="text-muted-foreground"
+              >Deshabilitado marcado</Label
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Badge -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Badge
+        </h2>
+        <div class="flex flex-wrap gap-3">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="outline">Outline</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+        </div>
+      </section>
+
+      <!-- Avatar -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Avatar
+        </h2>
+        <div class="flex flex-wrap items-center gap-4">
+          <AvatarWithFallback initials="MG" className="size-8" />
+          <AvatarWithFallback initials="AB" className="size-10" />
+          <AvatarWithFallback initials="XY" className="size-14" />
+          <AvatarWithFallback initials="JD" className="size-20" />
+        </div>
+        <div class="flex items-center gap-3">
+          <AvatarWithFallback initials="CR" className="size-10" />
+          <div class="flex flex-col">
+            <span class="text-foreground text-sm font-medium">Carlos Ruiz</span>
+            <span class="text-muted-foreground text-xs"
+              >Docente · Matemática</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Separator -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Separator
+        </h2>
+        <div class="space-y-4">
+          <div class="flex flex-col gap-2">
+            <p class="text-muted-foreground text-xs">Horizontal</p>
+            <Separator />
+          </div>
+          <div class="flex h-8 items-center gap-4">
+            <span class="text-foreground text-sm">Inicio</span>
+            <Separator orientation="vertical" />
+            <span class="text-foreground text-sm">Cursos</span>
+            <Separator orientation="vertical" />
+            <span class="text-foreground text-sm">Perfil</span>
           </div>
         </div>
       </section>
