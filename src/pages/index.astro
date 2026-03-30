@@ -21,7 +21,12 @@ const { user } = Astro.locals;
       <div class="mt-10">
         {
           user ? (
-            <ButtonLogOut client:only="react" />
+            <div class="flex flex-col items-center justify-center gap-3">
+              <Button className="w-full" variant="secondary">
+                <a href="/components">Components</a>
+              </Button>
+              <ButtonLogOut client:only="react" />
+            </div>
           ) : (
             <Button asChild className="px-8">
               <a href="/login">Iniciar sesión</a>
