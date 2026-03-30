@@ -27,7 +27,7 @@ const { user } = Astro.locals;
                   Components
                 </a>
               </Button>
-              <ButtonLogOut client:only="react" />
+              <ButtonLogOut client:load />
             </div>
           ) : (
             <Button asChild className="px-8">
