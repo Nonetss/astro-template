@@ -1,0 +1,73 @@
+---
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  navLinks: NavLink[];
+}
+
+import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { NavUser } from '@/components/ui/nav-user';
+
+const { navLinks } = Astro.props;
+const user = Astro.locals.user ?? null;
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-border bg-background sticky top-0 z-50 border-b">
+  <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+    <!-- Brand -->
+    <a
+      href="/"
+      class="font-display text-foreground text-sm font-semibold tracking-tight"
+    >
+      Template
+    </a>
+
+    <!-- Links -->
+    <ul class="flex items-center gap-1">
+      {
+        navLinks.map(({ href, label }) => {
+          const isActive =
+            href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+          return (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  'px-3 py-1.5 text-xs font-medium transition-colors',
+                  isActive
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-4">
+      {
+        user ? (
+          <NavUser client:only="react" name={user.name} email={user.email} />
+        ) : (
+          <a
+            href="/login"
+            class="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors"
+          >
+            Login
+          </a>
+        )
+      }
+    </div>
+  </nav>
+  <div class="absolute top-1/2 right-6 -translate-y-1/2">
+    <ThemeToggle client:load />
+  </div>
+</header>

@@ -1,21 +1,18 @@
 import { Moon, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 export const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-  }, []);
-
   const toggle = (e: React.MouseEvent) => {
+    const isDark = document.documentElement.classList.contains('dark');
     const next = !isDark;
 
-    if (!document.startViewTransition) {
-      flushSync(() => setIsDark(next));
+    const apply = () => {
       document.documentElement.classList.toggle('dark', next);
       localStorage.setItem('theme', next ? 'dark' : 'light');
+    };
+
+    if (!document.startViewTransition) {
+      flushSync(apply);
       return;
     }
 
@@ -26,11 +23,7 @@ export const ThemeToggle = () => {
       Math.max(y, window.innerHeight - y),
     );
 
-    const transition = document.startViewTransition(() => {
-      flushSync(() => setIsDark(next));
-      document.documentElement.classList.toggle('dark', next);
-      localStorage.setItem('theme', next ? 'dark' : 'light');
-    });
+    const transition = document.startViewTransition(() => flushSync(apply));
 
     transition.ready.then(() => {
       document.documentElement.animate(
@@ -52,10 +45,11 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggle}
-      aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+      aria-label="Cambiar tema"
       className="border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground flex h-9 w-9 items-center justify-center border transition-colors"
     >
-      {isDark ? <Sun size={16} /> : <Moon size={16} />}
+      <Sun size={16} className="hidden dark:block" />
+      <Moon size={16} className="block dark:hidden" />
     </button>
   );
 };
