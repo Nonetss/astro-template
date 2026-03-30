@@ -13,7 +13,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { navigate } from 'astro/virtual-modules/transitions-router.js';
 
 const loginSchema = z.object({
   email: z.string(),
@@ -37,7 +36,7 @@ export const LoginPage = () => {
         password: data.password,
       })
       .then(() => {
-        navigate('/');
+        window.location.assign('/');
       });
   };
 
