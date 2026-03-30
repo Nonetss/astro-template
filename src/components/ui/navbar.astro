@@ -27,7 +27,7 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <!-- Links — desktop -->
-    <ul class="hidden items-center gap-1 md:flex">
+    <ul class:list={['items-center gap-1', user ? 'hidden md:flex' : 'hidden']}>
       {
         navLinks.map(({ href, label }) => {
           const isActive =
@@ -119,29 +119,31 @@ const currentPath = Astro.url.pathname;
     id="nav-menu"
     class="border-border bg-background hidden border-t md:hidden"
   >
-    <ul class="flex flex-col px-6 py-3">
-      {
-        navLinks.map(({ href, label }) => {
-          const isActive =
-            href === '/' ? currentPath === '/' : currentPath.startsWith(href);
-          return (
-            <li>
-              <a
-                href={href}
-                class:list={[
-                  'block py-2.5 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground',
-                ]}
-              >
-                {label}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
+    {
+      user && (
+        <ul class="flex flex-col px-6 py-3">
+          {navLinks.map(({ href, label }) => {
+            const isActive =
+              href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+            return (
+              <li>
+                <a
+                  href={href}
+                  class:list={[
+                    'block py-2.5 text-sm font-medium transition-colors',
+                    isActive
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:text-foreground',
+                  ]}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
 
     <div class="border-border border-t px-6 py-4">
       <div class="flex items-center justify-between">
