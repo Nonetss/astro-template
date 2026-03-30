@@ -1,0 +1,270 @@
+---
+import Main from '@/layouts/main.astro';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
+---
+
+<Main title="Componentes">
+  <div class="bg-background min-h-screen px-8 py-16">
+    <div class="mx-auto max-w-4xl space-y-20">
+      <!-- Header -->
+      <div class="border-border border-b pb-8">
+        <p
+          class="text-muted-foreground text-xs font-medium tracking-widest uppercase"
+        >
+          Design System
+        </p>
+        <h1 class="font-display text-foreground mt-2 text-5xl font-bold">
+          Componentes
+        </h1>
+        <p class="text-muted-foreground mt-3 text-sm">
+          Vista previa del sistema de diseño. Solo para desarrollo.
+        </p>
+      </div>
+
+      <!-- Tipografía -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Tipografía
+        </h2>
+        <div class="space-y-4">
+          <div>
+            <p class="text-muted-foreground mb-1 text-xs">Display / Domine</p>
+            <p
+              class="font-display text-foreground text-5xl leading-tight font-bold"
+            >
+              El veloz murciélago
+            </p>
+          </div>
+          <div>
+            <p class="text-muted-foreground mb-1 text-xs">Heading 2</p>
+            <p class="font-display text-foreground text-3xl font-semibold">
+              hindú come feliz
+            </p>
+          </div>
+          <div>
+            <p class="text-muted-foreground mb-1 text-xs">Heading 3</p>
+            <p class="font-display text-foreground text-xl font-semibold">
+              kiwi y cigüeña
+            </p>
+          </div>
+          <div>
+            <p class="text-muted-foreground mb-1 text-xs">Body / Funnel Sans</p>
+            <p class="text-foreground max-w-lg text-base leading-relaxed">
+              El diseño de sistemas tipográficos requiere coherencia entre
+              escala, peso y espaciado. Una buena jerarquía comunica estructura
+              sin necesidad de color.
+            </p>
+          </div>
+          <div>
+            <p class="text-muted-foreground mb-1 text-xs">Small / Muted</p>
+            <p class="text-muted-foreground text-sm">
+              Texto auxiliar, descripciones y metadatos secundarios.
+            </p>
+          </div>
+          <div>
+            <p class="text-muted-foreground mb-1 text-xs">Label / Uppercase</p>
+            <p
+              class="text-muted-foreground text-xs font-medium tracking-widest uppercase"
+            >
+              Etiqueta de sección
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Colores -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Paleta
+        </h2>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {
+            [
+              { name: 'Background', cls: 'bg-background border border-border' },
+              { name: 'Card', cls: 'bg-card border border-border' },
+              { name: 'Secondary', cls: 'bg-secondary' },
+              { name: 'Muted', cls: 'bg-muted' },
+              { name: 'Primary', cls: 'bg-primary' },
+              { name: 'Destructive', cls: 'bg-destructive' },
+              { name: 'Border', cls: 'bg-border' },
+              { name: 'Foreground', cls: 'bg-foreground' },
+            ].map(({ name, cls }) => (
+              <div>
+                <div class={`h-12 w-full ${cls}`} />
+                <p class="text-muted-foreground mt-1.5 text-xs">{name}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Botones -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Botones
+        </h2>
+        <div class="flex flex-wrap gap-3">
+          <Button>Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="link">Link</Button>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <Button size="lg">Large</Button>
+          <Button>Default</Button>
+          <Button size="sm">Small</Button>
+          <Button size="icon">+</Button>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <Button disabled>Disabled</Button>
+          <Button variant="outline" disabled>Disabled outline</Button>
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Formulario
+        </h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="space-y-1.5">
+            <Label>Email</Label>
+            <Input
+              type="email"
+              placeholder="tu@email.com"
+              className="rounded-none"
+            />
+          </div>
+          <div class="space-y-1.5">
+            <Label>Contraseña</Label>
+            <Input
+              type="password"
+              placeholder="••••••••"
+              className="rounded-none"
+            />
+          </div>
+          <div class="space-y-1.5">
+            <Label>Deshabilitado</Label>
+            <Input
+              placeholder="No editable"
+              disabled
+              className="rounded-none"
+            />
+          </div>
+          <div class="space-y-1.5">
+            <Label>Con valor</Label>
+            <Input value="Valor existente" className="rounded-none" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Cards
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <Card className="rounded-none">
+            <CardHeader>
+              <CardTitle>Título de la card</CardTitle>
+              <CardDescription
+                >Descripción secundaria con información de contexto.</CardDescription
+              >
+            </CardHeader>
+            <CardContent>
+              <p class="text-muted-foreground text-sm">
+                Contenido principal de la card. Puede incluir cualquier
+                elemento.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full">Acción</Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="rounded-none">
+            <CardHeader>
+              <CardTitle>Card sin footer</CardTitle>
+              <CardDescription>Solo con header y contenido.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-muted-foreground">Estado</span>
+                <span class="text-foreground font-medium">Activo</span>
+              </div>
+              <div class="bg-border h-px"></div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-muted-foreground">Última conexión</span>
+                <span class="text-foreground font-medium">Hace 2h</span>
+              </div>
+              <div class="bg-border h-px"></div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-muted-foreground">Rol</span>
+                <span class="text-foreground font-medium">Admin</span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <!-- Estados de feedback -->
+      <section class="space-y-6">
+        <h2
+          class="font-display text-muted-foreground text-xs font-semibold tracking-widest uppercase"
+        >
+          Feedback
+        </h2>
+        <div class="space-y-3">
+          <div
+            class="border-border bg-card text-foreground border px-4 py-3 text-sm"
+          >
+            <span class="font-medium">Info</span> — Mensaje informativo neutral.
+          </div>
+          <div
+            class="border-primary/40 bg-primary/10 text-foreground border px-4 py-3 text-sm"
+          >
+            <span class="text-primary font-medium">Éxito</span> — Operación completada
+            correctamente.
+          </div>
+          <div
+            class="border-destructive/40 bg-destructive/10 text-foreground border px-4 py-3 text-sm"
+          >
+            <span class="text-destructive font-medium">Error</span> — Algo ha ido
+            mal. Inténtalo de nuevo.
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="border-border border-t pt-8 text-center">
+        <p class="text-muted-foreground text-xs">
+          <a href="/" class="hover:text-foreground transition-colors"
+            >← Volver al inicio</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</Main>

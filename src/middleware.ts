@@ -5,7 +5,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // 1. Evitar bucles en login y rutas de la API de auth
   if (
     context.url.pathname.startsWith('/login') ||
-    context.url.pathname.startsWith('/api/auth')
+    context.url.pathname.startsWith('/api/auth') ||
+    context.url.pathname.startsWith('/components')
   ) {
     return next();
   }
