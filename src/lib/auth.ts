@@ -1,5 +1,6 @@
 import { createAuthClient } from 'better-auth/react';
 import { ssoClient } from '@better-auth/sso/client';
+import { genericOAuthClient } from 'better-auth/client/plugins';
 
 /** Origen público donde el navegador alcanza `/api/auth` (mismo host que Astro o URL absoluta). */
 function resolveAuthBaseURL(): string {
@@ -12,5 +13,5 @@ function resolveAuthBaseURL(): string {
 
 export const authClient = createAuthClient({
   baseURL: resolveAuthBaseURL(),
-  plugins: [ssoClient()],
+  plugins: [ssoClient(), genericOAuthClient()],
 });

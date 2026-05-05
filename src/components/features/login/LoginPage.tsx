@@ -41,8 +41,8 @@ export const LoginPage = () => {
 
   const handleSSOLogin = async () => {
     try {
-      await authClient.signIn.sso({
-        providerId: 'authentik',
+      await authClient.signIn.oauth2({
+        providerId: 'keycloak',
         callbackURL: '/',
       });
     } catch (error) {
