@@ -1,15 +1,15 @@
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { cn } from '@/lib/utils';
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
 interface Props {
-  initials: string;
-  className?: string;
+	initials: string;
+	className?: string;
 }
 
 export function AvatarWithFallback({ initials, className }: Props) {
-  return (
-    <Avatar className={cn('rounded-none', className)}>
-      <AvatarFallback>{initials}</AvatarFallback>
-    </Avatar>
-  );
+	return (
+		<Avatar className={cn("rounded-none", className)}>
+			<AvatarFallback>{initials}</AvatarFallback>
+		</Avatar>
+	);
 }

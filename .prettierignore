@@ -1,5 +1,0 @@
-# Skills con snippets JSX/pseudo-código que rompen el parser de MD en Prettier
-.agents/
-
-dist/
-node_modules/
