@@ -12,9 +12,9 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/mdx": "5.0.0",
-    "@astrojs/node": "10.0.0",
-    "@astrojs/react": "5.0.0",
+    "@astrojs/mdx": "5.0.6",
+    "@astrojs/node": "10.1.1",
+    "@astrojs/react": "5.0.5",
     "@better-auth/sso": "^1.4.16",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-label": "^2.1.8",
@@ -23,7 +23,7 @@
     "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "6.0.3",
+    "astro": "6.3.7",
     "axios": "^1.13.2",
     "better-auth": "^1.4.18",
     "canvas-confetti": "^1.9.4",
